@@ -6,6 +6,12 @@
 	grid-template-columns: repeat(2, 1fr);
 
 	row-gap: 10vh;
+
+	@media only screen and (max-width: $md) {
+		margin-top: 15vh;
+		row-gap: 3.5vh;
+	}
+
 	margin: 6rem auto;
 
 	justify-items: center;
@@ -20,6 +26,22 @@
 
 	@media only screen and (max-width: $md) {
 		position: static;
+
+		.user-pick-text {
+			order: 3;
+		}
+
+		.computer-pick-text {
+			order: 4;
+		}
+
+		.user-pick {
+			order: 1;
+		}
+
+		.user-pick {
+			order: 2;
+		}
 	}
 
 	&--res {

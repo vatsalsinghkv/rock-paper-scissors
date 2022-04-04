@@ -55,10 +55,16 @@ const Playing = () => {
 					: ''
 			}`}
 		>
-			<h3>You Picked</h3>
-			<h3>The House Picked</h3>
+			<h3 className={styles['user-pick-text']}>You Picked</h3>
+			<h3 className={styles['computer-pick-text']}>The House Picked</h3>
 
-			<Disk type={userPick} div="true" size="lg" active={result?.win} />
+			<Disk
+				className={styles['user-pick']}
+				type={userPick}
+				div="true"
+				size="lg"
+				active={result?.win}
+			/>
 
 			{result.hasOwnProperty('draw') && (
 				<ResultText text="match draw" className={styles.text} />
@@ -73,6 +79,7 @@ const Playing = () => {
 
 			{computerPicked && (
 				<Disk
+					className={styles['computer-pick']}
 					type={computerPick}
 					div="true"
 					size="lg"
