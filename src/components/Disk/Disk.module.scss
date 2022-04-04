@@ -1,0 +1,147 @@
+@use '../../sass/mixins' as *;
+@use '../../sass/variables' as *;
+
+$colors: (
+	rock: (
+		var(--color-rock-grad-1),
+		var(--color-rock-grad-2),
+	),
+	paper: (
+		var(--color-paper-grad-1),
+		var(--color-paper-grad-2),
+	),
+	scissors: (
+		var(--color-scissors-grad-1),
+		var(--color-scissors-grad-2),
+	),
+);
+
+$borders: (
+	rock: var(--color-rock-grad-1),
+	paper: var(--color-paper-grad-1),
+	scissors: var(--color-scissors-grad-1),
+);
+
+@mixin colorStyle($type) {
+	background: linear-gradient(to top, map-get($colors, $type));
+}
+
+@mixin borderStyle($type) {
+	border-bottom: 2px solid map-get($borders, $type);
+}
+
+@mixin shadowCircle($radius, $opacity) {
+	content: '';
+	@include absoluteCenter;
+	z-index: 0;
+	width: $radius;
+	height: $radius;
+	border-radius: 50%;
+	background-color: rgba($color: #fff, $alpha: $opacity);
+}
+
+.disk {
+	position: relative;
+
+	&--lg {
+		display: inline-block;
+		transform: scale(1.5);
+
+		@media only screen and (max-width: $md) {
+			transform: scale(1.2);
+		}
+
+		@media only screen and (max-width: $sm) {
+			transform: scale(1.1);
+		}
+	}
+
+	&--active {
+		&::before {
+			@include shadowCircle(140%, 0.04);
+		}
+
+		&::after {
+			@include shadowCircle(185%, 0.03);
+		}
+
+		span::after {
+			@include shadowCircle(235%, 0.02);
+		}
+	}
+}
+
+.circle {
+	font-size: 10px;
+
+	@media only screen and (max-width: $md-sm) {
+		font-size: 8px;
+	}
+
+	@media only screen and (max-width: $sm) {
+		font-size: 7px;
+	}
+
+	@media only screen and (max-width: $sm-sm) {
+		font-size: 5px;
+	}
+
+	@include flexCenter;
+	position: relative;
+	:not(:last-child) {
+		z-index: 10;
+	}
+
+	img {
+		width: 45%;
+	}
+
+	&__outer {
+		cursor: pointer;
+		width: 20em;
+		height: 20em;
+		border-bottom: 1em solid rgba($color: #000, $alpha: 0.35);
+		box-shadow: 0 0 2em 0.1em rgba($color: #000, $alpha: 0.2);
+
+		&:hover,
+		&:focus {
+			// outline: none;
+			transform: translateY(-5px);
+			box-shadow: 0 0 5px 1px rgba($color: #000, $alpha: 0.2);
+		}
+
+		&:active {
+			transform: translateY(-2px);
+		}
+
+		&--paper {
+			@include colorStyle(paper);
+		}
+
+		&--rock {
+			@include colorStyle(rock);
+		}
+
+		&--scissors {
+			@include colorStyle(scissors);
+		}
+	}
+
+	&__inner {
+		width: 15.5em;
+		height: 15.5em;
+		border-top: 8px solid rgba($color: #000000, $alpha: 0.25);
+
+		&--paper {
+			@include borderStyle(paper);
+		}
+
+		&--rock {
+			@include borderStyle(rock);
+		}
+
+		&--scissors {
+			@include borderStyle(scissors);
+		}
+	}
+}

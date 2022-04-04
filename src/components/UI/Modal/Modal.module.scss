@@ -1,0 +1,87 @@
+// @use '../../sass/mixins' as *;
+@use '../../../sass/variables' as *;
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(#000, 0.6);
+	backdrop-filter: blur(3px);
+	z-index: 50;
+}
+
+/* MODAL */
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+
+	padding: 3rem;
+	background-color: #fff;
+
+	// width: 50%;
+
+	@media only screen and (max-width: $md) {
+		padding: 3rem;
+		width: 50%;
+	}
+
+	@media only screen and (max-width: $md-sm) {
+		width: 70%;
+	}
+
+	@media only screen and (max-width: $sm-lg) {
+		width: 90%;
+	}
+
+	@media only screen and (max-width: $sm-md) {
+		width: 95%;
+	}
+
+	box-shadow: 0 2rem 4rem rgba(#000, 0.2);
+	border-radius: 8px;
+
+	z-index: 100;
+	overflow: hidden;
+
+	transform: translate(-50%, -60%) scale(1);
+
+	header {
+		margin-bottom: 1.5rem;
+	}
+
+	// MODAL CLOSE
+	&__close {
+		background: none;
+		border: none;
+		display: block;
+		outline: none;
+
+		position: absolute;
+		top: 3rem;
+		right: 3rem;
+
+		img {
+			display: block;
+		}
+
+		span {
+			display: block;
+			font-size: 32px;
+		}
+
+		cursor: pointer;
+
+		color: var(--color-grey-3);
+		transition: all 0.3s;
+
+		&:hover,
+		&:focus,
+		&:active {
+			outline: none;
+			color: var(--color-delete);
+		}
+	}
+}

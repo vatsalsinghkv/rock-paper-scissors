@@ -1,0 +1,13 @@
+@mixin flexCenter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+// POSITIONS
+@mixin absoluteCenter($top: 50%, $left: 50%) {
+	position: absolute;
+	top: $top;
+	left: $left;
+	transform: translate(-50%, -50%);
+}

@@ -1,0 +1,46 @@
+@use 'sass:math';
+
+:root {
+	--color-scissors-grad-1: hsl(39, 89%, 49%);
+	--color-scissors-grad-2: hsl(40, 84%, 53%);
+
+	--color-paper-grad-1: hsl(230, 89%, 62%);
+	--color-paper-grad-2: hsl(230, 89%, 65%);
+
+	--color-rock-grad-1: hsl(349, 71%, 52%);
+	--color-rock-grad-2: hsl(349, 70%, 56%);
+
+	--color-lizard-grad-1: hsl(261, 73%, 60%);
+	--color-lizard-grad-2: hsl(261, 72%, 63%);
+
+	--color-cyan-grad-1: hsl(189, 59%, 53%);
+	--color-cyan-grad-2: hsl(189, 58%, 57%);
+
+	--color-bg-grad-1: hsl(214, 47%, 23%);
+	--color-bg-grad-2: hsl(237, 49%, 15%);
+
+	--color-primary: #fff;
+	--color-special: hsl(229, 64%, 46%);
+	--color-grey-1: hsl(229, 25%, 31%);
+	--color-grey-2: hsl(217, 16%, 45%);
+	--color-grey-3: #bdbdbd;
+
+	--color-delete: var(--color-rock-grad-2);
+
+	// FONTS
+	--font-primary: 'Barlow Semi Condensed', sans-serif;
+	--font-size: 1.8rem;
+
+	// Sizes
+	--max-width: 136.6rem;
+}
+
+// BREAK POINTS
+$lg: math.div(1200, 16) * 1em;
+$lg-sm: math.div(1100, 16) * 1em;
+$md: math.div(975, 16) * 1em;
+$md-sm: math.div(750, 16) * 1em;
+$sm-lg: math.div(550, 16) * 1em;
+$sm: math.div(450, 16) * 1em;
+$sm-md: math.div(400, 16) * 1em;
+$sm-sm: math.div(330, 16) * 1em;

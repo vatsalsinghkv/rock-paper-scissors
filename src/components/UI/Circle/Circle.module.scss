@@ -1,0 +1,15 @@
+.circle {
+	display: block;
+	height: 100px;
+	width: 100px;
+	background: var(--color-primary);
+
+	border: none;
+	border-radius: 50%;
+
+	transition: all 0.2s;
+}
+
+button.circle {
+	cursor: pointer;
+}

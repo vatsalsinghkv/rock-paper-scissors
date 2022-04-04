@@ -1,0 +1,54 @@
+@use '../../sass/mixins' as *;
+@use '../../sass/variables' as *;
+
+.main {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+
+	row-gap: 10vh;
+	margin: 6rem auto;
+
+	justify-items: center;
+	justify-content: center;
+	align-items: center;
+
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	font-weight: lighter;
+
+	position: relative;
+
+	@media only screen and (max-width: $md) {
+		position: static;
+	}
+
+	&--res {
+		column-gap: 60%;
+
+		@media only screen and (max-width: $lg-sm) {
+			column-gap: 50%;
+		}
+
+		@media only screen and (max-width: $md) {
+			column-gap: 0;
+		}
+	}
+
+	.circle {
+		width: 20rem;
+		height: 20rem;
+		background-color: rgba(#000, 0.15);
+	}
+
+	.text {
+		// grid-row: 1 / 3;
+		// grid-column: 2 / 3;
+		position: absolute;
+		@include absoluteCenter(70%);
+
+		@media only screen and (max-width: $md) {
+			// @include absoluteCenter(200%);
+			bottom: 50%;
+		}
+	}
+}
