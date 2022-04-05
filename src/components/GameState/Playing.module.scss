@@ -4,7 +4,7 @@
 .main {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-
+	grid-template-rows: 2;
 	row-gap: 10vh;
 
 	@media only screen and (max-width: $md) {
@@ -23,6 +23,18 @@
 	font-weight: lighter;
 
 	position: relative;
+
+	&--res {
+		column-gap: 60%;
+
+		@media only screen and (max-width: $lg-sm) {
+			column-gap: 50%;
+		}
+
+		@media only screen and (max-width: $md) {
+			column-gap: 0;
+		}
+	}
 
 	@media only screen and (max-width: $md) {
 		position: static;
@@ -44,22 +56,16 @@
 		}
 	}
 
-	&--res {
-		column-gap: 60%;
-
-		@media only screen and (max-width: $lg-sm) {
-			column-gap: 50%;
-		}
-
-		@media only screen and (max-width: $md) {
-			column-gap: 0;
-		}
-	}
-
 	.circle {
 		width: 20rem;
 		height: 20rem;
 		background-color: rgba(#000, 0.15);
+
+		@media only screen and (max-width: $md) {
+			& {
+				order: 2;
+			}
+		}
 	}
 
 	.text {
