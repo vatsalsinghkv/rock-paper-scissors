@@ -1,9 +1,22 @@
-import { createContext, useCallback, useState } from 'react';
+import { createContext, useCallback, useEffect, useState } from 'react';
 
 const ScoreContext = createContext();
 
 const ScoreProvider = ({ children }) => {
 	const [score, setScore] = useState(0);
+
+	const saveScore = () => {
+		localStorage.setItem('score', `${score}`);
+	};
+
+	const loadScore = () => {
+		const savedScore = +localStorage.getItem('score');
+		console.log(savedScore);
+		if (savedScore) setScore(savedScore);
+	};
+
+	useEffect(loadScore, []);
+	useEffect(saveScore, [score]);
 
 	const increaseScore = useCallback(
 		() => setScore(prevScore => ++prevScore),
