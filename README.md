@@ -1,119 +1,212 @@
-# Frontend Mentor - Rock, Paper, Scissors
+# Frontend Mentor - Rock, Paper, Scissors solution
 
-![Design preview for the Rock, Paper, Scissors coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [Rock, Paper, Scissors challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
+## Overview
 
-**To do this challenge, you need a basic understanding of HTML, CSS and JavaScript.**
+### The challenge
 
-## The challenge
-
-Your challenge is to build out this Rock, Paper, Scissors game and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-Your users should be able to:
+Users should be able to:
 
 - View the optimal layout for the game depending on their device's screen size
 - Play Rock, Paper, Scissors against the computer
 - Maintain the state of the score after refreshing the browser _(optional)_
-- **Bonus**: Play Rock, Paper, Scissors, Lizard, Spock against the computer _(optional)_
 
-### Rules
+### Screenshot
 
-If the player wins, they gain 1 point. If the computer wins, the player loses one point.
+![gif](.screenshots/rock-paper-scissors.gif)
+![](.screenshots/Screenshot-mobile.png)
 
-#### Original
+### Links
 
-- Paper beats Rock
-- Rock beats Scissors
-- Scissors beats Paper
+- Solution URL: [https://www.frontendmentor.io/solutions/rock-paper-scissors-using-reactjs-S1Z3uRpQ9](https://www.frontendmentor.io/solutions/rock-paper-scissors-using-reactjs-S1Z3uRpQ9)
+- Live Site URL: [https://rock-paper-scissors-kv.netlify.app/](https://rock-paper-scissors-kv.netlify.app/)
 
-#### Bonus
+## My process
 
-- Scissors beats Paper
-- Paper beats Rock
-- Rock beats Lizard
-- Lizard beats Spock
-- Spock beats Scissors
-- Scissors beats Lizard
-- Paper beats Spock
-- Rock beats Scissors
-- Lizard beats Paper
-- Spock beats Rock
+### Built with
 
-Not sure what Rock, Paper, Scissors, Lizard, Spock is? [Check out this clip from The Big Bang Theory](https://www.youtube.com/watch?v=iSHPVCBsnLw).
+- Flexbox
+- CSS Grid
+- Desktop-first workflow
+- CSS modules
+- [React](https://reactjs.org/) - JS library
+- [Sass](https://sass-lang.com/) - CSS extension language
 
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
+### What I learned
 
-## Where to find everything
+I've learned lot of things in this challenge:
 
-Your task is to build out the project to the designs inside the `/design` folder. You can either choose the `original` designs for the simpler version or the `bonus` designs for the harder version. You will find both mobile and desktop versions of the design to work to. Each file is also named depending on which step in the game the design is for.
+- How to use context in React
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+```js
+import { createContext, useState } from 'react';
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+const RulesContext = createContext({
+	showRules: false,
+	closeRules: () => {},
+	openRules: () => {},
+});
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+const RulesProvider = ({ children }) => {
+	const [showRules, setShowRules] = useState(false);
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+	const openRules = () => setShowRules(true);
+	const closeRules = () => setShowRules(false);
 
-## Building your project
+	return (
+		<RulesContext.Provider value={{ showRules, closeRules, openRules }}>
+			{children}
+		</RulesContext.Provider>
+	);
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+	export { RulesContext as default, RulesProvider };
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+	// USE
+	import { useContext } from 'react';
+	const { showRules, openRules, closeRules } = useContext(rulesContext);
+};
+```
 
-## Deploying your project
+- How to animate something (using class)
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+```js
+const [bump, setBump] = useState(false);
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+useEffect(() => {
+	if (!value) return;
+	setBump(true);
+	const timer = setTimeout(() => setBump(false), 300);
+	return () => clearTimeout(timer);
+}, [value]);
+```
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+- When to use React.memo()
 
-## Create a custom `README.md`
+```js
+import { memo } from 'react';
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+/* 
+Were using memo so this component doesn't get rerender when app gets rerender because ShowRules state changes
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+But now this component always get compared with its prev state if there is some change it will get rerendered
+*/
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+export default memo(Playing);
+```
 
-## Submitting your solution
+- When to use useCallback hook
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+```js
+import { createContext, useCallback } from 'react';
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+const ScoreContext = createContext();
 
-## Sharing your solution
+const ScoreProvider = ({ children }) => {
+	const [score, setScore] = useState(0);
 
-There are multiple places you can share your solution:
+	const reduceScore = useCallback(
+		() => setScore(prevScore => (--prevScore < 0 ? 0 : prevScore)),
+		[]
+	);
 
-1. Share your solution page in the **#finished-projects** channel of the [Slack community](https://www.frontendmentor.io/slack). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+	return (
+		<ScoreContext.Provider
+			value={{
+				score,
+				reduceScore,
+			}}
+		>
+			{children}
+		</ScoreContext.Provider>
+	);
+};
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+export { ScoreContext as default, ScoreProvider };
+```
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+- How to create modal in React
 
-## Got feedback for us?
+```html
+<body>
+	<noscript>You need to enable JavaScript to run this app.</noscript>
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+	<div id="overlay"></div>
+	<div id="modal"></div>
+	<div id="root"></div>
+</body>
+```
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
+```js
+import ReactDOM from 'react-dom';
 
-**Have fun building!** 🚀
+const Overlay = ({ onClick }) => (
+	<div className="overlay" onClick={onClick}></div>
+);
+
+const ModalBody = ({ close, className, children }) => {
+	return (
+		<div className={`modal ${className}`}>
+			<button className="modal__close" onClick={close}>
+				&times;
+			</button>
+			{children}
+		</div>
+	);
+};
+
+const Modal = ({ close, className, children }) => {
+	return (
+		<>
+			{ReactDOM.createPortal(
+				<Overlay onClick={close} />,
+				document.getElementById('overlay')
+			)}
+			{ReactDOM.createPortal(
+				<ModalBody close={close} className={className}>
+					{children}
+				</ModalBody>,
+				document.getElementById('modal')
+			)}
+		</>
+	);
+};
+```
+
+### Continued development
+
+Technologies I'd be learning soon:
+
+- NextJs
+- Typescript
+- Blockchain Development
+- Flutter & Dart
+
+### Useful resources
+
+- [MDN Docs](https://developer.mozilla.org/en-US/) - This is an amazing reference which helped me finally understand detailed concepts like data- attr, aria attr, input range etc.
+- [W3Schools](https://www.w3schools.com/) - This is an amazing website for learning, I've learned about semantic tags from here only and learned many important HTML elements. I'd recommend it to anyone still learning this concept.
+- [React Docs](https://reactjs.org/docs/getting-started.html) - This is good reference to learn ReactJs
+
+**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+
+## Author
+
+- Github - [@vatsalsinghkv](https://github.com/vatsalsinghkv)
+- Twitter - [@vatsalsinghkv](https://www.twitter.com/vatsalsinghkv)
+- Instagram - [@vatsal.sing.hkv](https://www.instagram.com/vatsal.singh.kv)
+- Facebook - [@vatsalsinghkv](https://www.facebook.com/vatsal.singh.kv)
+- Frontend Mentor - [@vatsalsinghkv](https://www.frontendmentor.io/profile/vatsalsinghkv)
