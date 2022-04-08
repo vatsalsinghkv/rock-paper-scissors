@@ -27,8 +27,8 @@ Users should be able to:
 
 ### Screenshot
 
-![gif](.screenshots/rock-paper-scissors.gif)
-![](.screenshots/Screenshot-mobile.png)
+![gif](./screenshots/rock-paper-scissors.gif)
+![](./screenshots/Screenshot-mobile.png)
 
 ### Links
 
