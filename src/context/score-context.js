@@ -5,10 +5,16 @@ const ScoreContext = createContext();
 const ScoreProvider = ({ children }) => {
 	const [score, setScore] = useState(0);
 
+	/**
+	 * Saves Score in local storage
+	 */
 	const saveScore = () => {
 		localStorage.setItem('score', `${score}`);
 	};
 
+	/**
+	 * Loads Score from local storage and update in state
+	 */
 	const loadScore = () => {
 		const savedScore = +localStorage.getItem('score');
 		console.log(savedScore);
@@ -18,11 +24,17 @@ const ScoreProvider = ({ children }) => {
 	useEffect(loadScore, []);
 	useEffect(saveScore, [score]);
 
+	/**
+	 * Increase score in the state
+	 */
 	const increaseScore = useCallback(
 		() => setScore(prevScore => ++prevScore),
 		[]
 	);
 
+	/**
+	 * Decrease score in the state
+	 */
 	const reduceScore = useCallback(
 		() => setScore(prevScore => (--prevScore < 0 ? 0 : prevScore)),
 		[]
