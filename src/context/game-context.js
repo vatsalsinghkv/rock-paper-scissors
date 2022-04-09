@@ -9,6 +9,10 @@ const GameStateProvider = ({ children }) => {
 		result: false,
 	});
 
+	/**
+	 * Updates user's pick in the state
+	 * @param {Object} userPick set the this object as new game state
+	 */
 	const setUserPick = useCallback(
 		userPick => {
 			setGameState({ initial: false, playing: { userPick }, result: false });
@@ -16,6 +20,10 @@ const GameStateProvider = ({ children }) => {
 		[setGameState]
 	);
 
+	/**
+	 * Updates computer's pick in the state
+	 * @param {Object} computerPick set the this object as new game state
+	 */
 	const setComputerPick = useCallback(
 		computerPick => {
 			setGameState(prevState => ({
@@ -26,6 +34,10 @@ const GameStateProvider = ({ children }) => {
 		[setGameState]
 	);
 
+	/**
+	 * Updates result in the state
+	 * @param {Boolean} res user's result (win | lose)
+	 */
 	const setResult = useCallback(res => {
 		setGameState(prev => ({ ...prev, result: res }));
 	}, []);

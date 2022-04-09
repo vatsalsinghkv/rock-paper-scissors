@@ -3,7 +3,7 @@ import { TYPES } from '../helper/config';
 /* const TYPES = ['rock', 'paper', 'scissors']; */
 
 /**
- *
+ * Checks if user won or lost the match
  * @param {String} userPick rock, paper, scissors picked by user
  * @param {*} computerPick rock, paper, scissors picked by computer
  * @returns {Object} win: true or false or draw: true
